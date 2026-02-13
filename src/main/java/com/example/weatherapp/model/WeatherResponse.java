@@ -1,9 +1,11 @@
 package com.example.weatherapp.model;
 
+import java.util.List;
+
 public class WeatherResponse {
 
     public Main main;
-    public Weather[] weather;
+    public List<Weather> weather;
     public Wind wind;
 
     public static class Main {
@@ -19,3 +21,5 @@ public class WeatherResponse {
         public double speed;
     }
 }
+
+
