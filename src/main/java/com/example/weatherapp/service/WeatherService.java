@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+import java.util.Map;
+
 @Service
 public class WeatherService {
 
@@ -22,13 +25,27 @@ public class WeatherService {
         );
 
         try {
-            return restTemplate.getForObject(requestUrl, WeatherResponse.class);
+            Map<String, Object> response = restTemplate.getForObject(requestUrl, Map.class);
+
+            Map<String, Object> main = (Map<String, Object>) response.get("main");
+            List<Map<String, Object>> weatherList = (List<Map<String, Object>>) response.get("weather");
+            Map<String, Object> wind = (Map<String, Object>) response.get("wind");
+
+            double temp = ((Number) main.get("temp")).doubleValue();
+            double humidity = ((Number) main.get("humidity")).doubleValue();
+            String description = (String) weatherList.get(0).get("description");
+            double windSpeed = wind != null ? ((Number) wind.get("speed")).doubleValue() : 0;
+
+            return new WeatherResponse(
+                    city,
+                    temp,
+                    humidity,
+                    description,
+                    windSpeed
+            );
+
         } catch (Exception e) {
             throw new RuntimeException("Error fetching weather: " + e.getMessage());
         }
     }
 }
-
-
-
-
