@@ -1,0 +1,34 @@
+<!Doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Document</title>
+</head>
+
+<body class="container">
+    <h1 class="Header">Weather App</h1>
+
+    <label for="city-input"></label>
+    <input id="city-input" type="text" placeholder="Enter city: ">
+    <button onclick="fetchWeather()">Get Weather</button>
+
+    <div id="result"></div>
+    <script>
+        async function fetchWeather() {
+        const city = document.getElementById("city-input").value;
+
+       const response = await fetch(`/api/weather/${city}`);
+        const data = await response.json();
+
+        document.getElementById("result").innerHTML =`
+             <h2>${data.city}</h2>
+             <p>Temperature: ${data.temperature}°F</p>
+             <p>Humidity: ${data.humidity}%</p>
+             <p>Description: ${data.description}</p>
+             <p>Wind Speed: ${data.windSpeed} mph</p>`;
+        }
+    </script>
+</body>
+</html>
