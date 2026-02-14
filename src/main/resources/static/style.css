@@ -1,12 +1,11 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .container {
+    display: flex;
+    align-items: center;
     justify-content: center;
     max-width: 800px;
     margin: 0 auto;
