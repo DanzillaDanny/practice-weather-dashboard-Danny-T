@@ -7,14 +7,16 @@
     <title>Weather App</title>
 </head>
 
-<body class="container">
-<h1>Weather App</h1>
+<body>
+<div class="container">
+    <h1>Weather App</h1>
 
-<input id="city-input" type="text" placeholder="Enter city">
-<button onclick="fetchWeather()">Get Weather</button>
+    <input id="city-input" type="text" placeholder="Enter city">
+    <button onclick="fetchWeather()">Get Weather</button>
 
-<div id="result"></div>
-
+    <div id="result"></div>
+</div>
+</body>
 <script>
     async function fetchWeather() {
         const city = document.getElementById("city-input").value;
