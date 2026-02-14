@@ -8,7 +8,7 @@ public class PageController {
 
     @GetMapping("/")
     public String home() {
-        return "index";  // loads templates/index.html
+        return "index";
     }
 }
 
